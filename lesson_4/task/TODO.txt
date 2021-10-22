@@ -1,0 +1,39 @@
+1) Создаём в папке task новую папку с именем hello-express
+
+2) Заходим в неё в терминале
+hello-express
+
+2) Инициализируем npm (после ввода команды жмём несколько раз Enter)
+npm init
+
+3) Устанавливаем Express.js
+npm install express 
+
+4) Устанавливаем Nodemon
+npm install -g nodemon
+
+5) Создаём файл index.js и копируем туда код:
+
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+
+6) Запускаем nodemon 
+nodemon .\index.js
+
+7) Переходим в браузере по ссылке http://localhost:3000
+
+8) Дописываем код, чтобы была возможность получить
+    a) name - Имя
+    б) surname - Фамилия
+    в) avatar_img - ссылку на аватарку
+    г) объект со всей информацией выше по примеру
+        res.json({ name: 'Nikita' })
