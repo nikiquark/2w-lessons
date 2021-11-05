@@ -1,0 +1,15 @@
+.navbar{
+    padding:0 30px;
+    border-radius: 0 0 20px 20px;
+}
+.group-list{
+    padding:50px;
+    font-size:10px;
+}
+.ava_c{
+    display: flex;
+    justify-content: center;
+}
+.main{
+    margin:50px;
+}
