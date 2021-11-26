@@ -1,0 +1,24 @@
+Сегодня ты напишешь Rest API для магазина
+
+1) Заходим в папку lesson_9
+
+2) Устанавливаем все библиотеки
+    npm i
+
+3) Смотрим документацию
+    http://93.92.223.34:3000/api-docs
+    или можно у себя, после запуска сервера node index.js
+    localhost:3000
+
+4) Необходимо реализовать все 5 запросов
+
+    GET /api/items
+    POST /api/items/
+    GET /api/items/:item
+    DELETE /api/items/:item
+    PATCH /api/items/:item
+
+5) Для POST /api/items/ после получения item в body можно сделать новый объект с id 
+    const new_item = {id: random_id(), ...item};
+
+6) Если есть вопросы, задавайте
