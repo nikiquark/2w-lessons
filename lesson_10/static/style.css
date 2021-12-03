@@ -1,0 +1,14 @@
+.navbar-brand{
+    margin-left: 40px;
+}
+.navbar{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.cards-home{
+    padding: 100px;
+}
+
+form{
+    margin-right: 50px;
+}

@@ -1,0 +1,232 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Описание REST API для работы магазина",
+    "version": "1.0.0",
+    "title": "REST API Онлайн магазина"
+  },
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/items/": {
+      "get": {
+        "tags": [
+          "Items/предметы"
+        ],
+        "summary": "Возвращает список всех предметов в наличии",
+        "description": "Возвращает список всех предметов в наличии",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Item"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Items/предметы"
+        ],
+        "summary": "Добавляет новый предмет",
+        "description": "Добавляет новый предмет, вся информация передаётся в body",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+            {
+                "name": "item",
+                "in": "body",
+                "description": "Информация о предмете",
+                "required": true,
+                "schema":{
+                    "type":"object",
+                    "properties": {
+                        "item":{
+                            "type":"object",
+                            "properties": {
+                                "name": {
+                                    "type" :"string"
+                                },
+                                "img": {
+                                    "type" :"string"
+                                },
+                                "description": {
+                                    "type" :"string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+                "$ref": "#/definitions/success"
+            }
+          }
+        }
+      }
+    },
+    "/api/items/{item_id}": {
+        "get": {
+          "tags": [
+            "Items/предметы"
+          ],
+          "summary": "Возвращает информацию о предмете",
+          "description": "Возвращает полную информацию о предмете по его id",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [{
+                "name": "item_id",
+                "in": "path",
+                "description": "ID предмета",
+                "required": true,
+                "type": "integer"
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                  "$ref": "#/definitions/Item"
+              }
+            }
+          }
+        },
+        "delete": {
+            "tags": [
+              "Items/предметы"
+            ],
+            "summary": "Удаляет предмет",
+            "description": "Удаляет предмет по id",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [{
+                  "name": "item_id",
+                  "in": "path",
+                  "description": "ID предмета",
+                  "required": true,
+                  "type": "integer"
+                },
+                {
+                  "name": "key",
+                  "in": "query",
+                  "description": "Пароль",
+                  "required": true,
+                  "type": "string"
+                }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful operation",
+                "schema": {
+                    "$ref": "#/definitions/success"
+                }
+              }
+            }
+        },
+        "patch": {
+            "tags": [
+              "Items/предметы"
+            ],
+            "summary": "Обновляет информацию о предмете",
+            "description": "Обновляет полную информацию о предмете по его id",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [{
+                  "name": "item_id",
+                  "in": "path",
+                  "description": "ID предмета",
+                  "required": true,
+                  "type": "integer"
+                },
+                {
+                    "name": "item",
+                    "in": "body",
+                    "description": "Информация о предмете",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/Item_noid"
+                    }
+                }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful operation",
+                "schema": {
+                    "$ref": "#/definitions/success"
+                }
+              }
+            }
+        }
+    }
+    
+  },
+  "definitions": {
+    "Item": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "img" :{
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "img",
+        "description"
+      ]
+    },
+    "Item_noid": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "img" :{
+              "type": "string"
+          },
+          "description": {
+              "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "img",
+          "description"
+        ]
+      },
+    "success": {
+        "properties": {
+            "result" : {
+                "type": "string",
+                "example": "success"
+            }
+        },
+        "required": [
+            "result"
+        ]
+    }
+  }
+}
