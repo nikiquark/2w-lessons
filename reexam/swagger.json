@@ -1,0 +1,203 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Описание REST API для работы твиттера",
+    "version": "1.0.0",
+    "title": "Зачёт"
+  },
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/twits/": {
+      "get": {
+        "tags": [
+          "Twits"
+        ],
+        "summary": "Возвращает список всех твитов",
+        "description": "Возвращает список всех твитов",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Item"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Twits"
+        ],
+        "summary": "Добавляет новый твит",
+        "description": "Добавляет новый твит, вся информация передаётся в body",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+            {
+                "name": "item",
+                "in": "body",
+                "description": "Информация о твите",
+                "required": true,
+                "schema":{
+                    "type":"object",
+                    "properties": {
+                        "twit":{
+                            "type":"object",
+                            "properties": {
+                              "author_id": {
+                                "type": "integer"
+                              },
+                              "text" :{
+                                  "type": "string"
+                              }
+                            }
+                        }
+                    }
+                }
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+                "$ref": "#/definitions/success"
+            }
+          }
+        }
+      }
+    },
+    "/api/twits/{twit_id}": {
+        "delete": {
+            "tags": [
+              "Twits"
+            ],
+            "summary": "Удаляет твит",
+            "description": "Удаляет твит по id",
+            "produces": [
+              "application/json"
+            ],
+            "parameters": [{
+                  "name": "twit_id",
+                  "in": "path",
+                  "description": "ID Твита",
+                  "required": true,
+                  "type": "integer"
+                }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful operation",
+                "schema": {
+                    "$ref": "#/definitions/success"
+                }
+              }
+            }
+        }
+    },
+    "/api/authors/{author_id}": {
+      "get": {
+          "tags": [
+            "Authors"
+          ],
+          "summary": "Получает информацию об авторе по его ID",
+          "description": "Получает информацию об авторе по его ID",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [{
+                "name": "author_id",
+                "in": "path",
+                "description": "ID автора",
+                "required": true,
+                "type": "integer"
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/author"
+                }
+              }
+            }
+          }
+      }
+  }
+    
+  },
+  "definitions": {
+    "Item": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "author_id": {
+          "type": "integer"
+        },
+        "text" :{
+            "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "author_id",
+        "text"
+      ]
+    },
+    "author": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "author_img": {
+          "type": "string"
+        },
+        "name" :{
+            "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "author_img",
+        "name"
+      ]
+    },
+    "Item_noid": {
+      "properties": {
+
+        "author_id": {
+          "type": "integer"
+        },
+        "text" :{
+            "type": "string"
+        }
+      },
+      "required": [
+        "author_id",
+        "text"
+      ]
+    },
+    "success": {
+        "properties": {
+            "result" : {
+                "type": "string",
+                "example": "success"
+            }
+        },
+        "required": [
+            "result"
+        ]
+    }
+  }
+}

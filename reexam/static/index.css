@@ -1,0 +1,24 @@
+.navbar-brand{
+    margin-left: 40px;
+}
+.navbar{
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.cards-home{
+    padding: 100px;
+}
+
+.nav_form{
+    margin-right: 50px;
+}
+
+.ava{
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.tweet{
+    padding-bottom:30px;
+}
